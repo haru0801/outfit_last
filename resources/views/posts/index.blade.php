@@ -12,7 +12,7 @@
             @foreach ($posts as $post)
                 <div class='post'>
                     <h2 class='title'>
-                        <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
+                        <a href="/posts/{{ $post->id }}">{{ $post->user->nickname }}</a>
                     </h2>
                     <p class='body'>{{ $post->body }}</p>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
