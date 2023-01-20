@@ -18,7 +18,7 @@ class ReviewSeeder extends Seeder
         DB::table('reviews')->insert([
             'title' => 'top',
             'body' => 'test',
-            'user_id' => '1',
+            'user_id' => '2',
             'post_id' => '4'
             ]);
     }
