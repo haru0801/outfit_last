@@ -10,10 +10,12 @@ class UserController extends Controller
 {
     //
     
-     public function show(User $user)
+     public function show(Request $request,$id)
     {
-        return view('users/show')->with(['user' => $user]);
-     
+        $user = User::find($id);
+        $user_flg = $request->path();
+        $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
+        return view('users/show',['user' => $user,'user_flg' => $user_flg]);
     }
     
     public function edit(User $user)
@@ -35,4 +37,27 @@ class UserController extends Controller
         $user->fill($input)->save();
         return redirect('/users/{user}' . $user->id);
     }
+    
+    public function follow(User $user)
+   {
+       $follower = auth()->user();
+       $is_following = $follower->isFollowing($user->id);
+       if(!$is_following) {
+           $follower->follow($user->id);
+           return back();
+       }
+   }
+ 
+   
+   public function unfollow(User $user)
+   {
+       $follower = auth()->user();
+       $is_following = $follower->isFollowing($user->id);
+       if($is_following) {
+           $follower->unfollow($user->id);
+           return back();
+       }
+   }
+   
+   
 }

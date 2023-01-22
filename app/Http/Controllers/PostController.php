@@ -25,10 +25,12 @@ class PostController extends Controller
         return view('posts/create');
     }
     
-    public function store(Post $post, PostRequest $request)
+    public function store(Post $post, Request $request)
     {
+        $post->user_id = \Auth::id(); 
         $input = $request['post'];
-        $post->fill($input)->save();
+        $post->fill($input);
+        $post->save();
         return redirect('/posts/' . $post->id);
     }
     

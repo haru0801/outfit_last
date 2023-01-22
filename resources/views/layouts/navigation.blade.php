@@ -18,7 +18,10 @@
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('index')">
                         {{ __('Index') }}
                     </x-nav-link>
-                
+                    <x-nav-link :href="route('post.create')" :active="request()->routeIs('create')">
+                        {{ __('Create') }}
+                    </x-nav-link>
+                 
                 </div>
             </div>
 
@@ -39,8 +42,9 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            {{ __('ユーザー情報変更') }}
                         </x-dropdown-link>
+                       
 
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
