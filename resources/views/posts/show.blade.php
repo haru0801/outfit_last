@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="footer">
-                <a href="route('post.index')">戻る</a>
+                <a href="/posts/index')">戻る</a>
             </div>
         </body>
      </x-app-layout>

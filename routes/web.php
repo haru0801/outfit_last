@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; 
 use App\Http\Controllers\UserController; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,14 +15,19 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
     Route::get('/posts/index', [PostController::class, 'index'])->name('post.index');
-    Route::post('/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');
     Route::delete('/posts/{post}', [PostController::class,'delete'])->name('post.delete');
 });
@@ -31,6 +37,8 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function()
     Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
 });
 
+Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
+Route::delete('users/{user}/unfollow',[UserController::class, 'unfollow'])->name('unfollow');
 
 
 Route::middleware('auth')->group(function () {
