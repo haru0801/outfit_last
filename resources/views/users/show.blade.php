@@ -42,7 +42,11 @@
             <div class="footer">
                 <a href="/posts/index">戻る</a>
             </div>
-            <div class="edit"><a href="/users/{{ $user->id }}/edit">プロフィール編集</a></div>
+            @if (auth()->id() == $user->id)
+              <div class="mb-4 text-center" style="margin-top:10px">
+                 <button type = "button" onclick="location.href='{{ route('user.edit', $user->id)}}'">編集する</button>
+               </div>
+            @endif
         </body>
     </x-app-layout>
 </html>

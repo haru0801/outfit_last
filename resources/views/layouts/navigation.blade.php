@@ -18,6 +18,9 @@
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('index')">
                         {{ __('Index') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('post.timeline')" :active="request()->routeIs('timeline')">
+                        {{ __('タイムライン') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('post.create')" :active="request()->routeIs('create')">
                         {{ __('Create') }}
                     </x-nav-link>
