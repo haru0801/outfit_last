@@ -10,9 +10,8 @@ class UserController extends Controller
 {
     //
     
-     public function show(Request $request,$id)
+     public function show(Request $request,User $user)
     {
-        $user = User::find($id);
         $user_flg = $request->path();
         $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
         return view('users/show',['user' => $user,'user_flg' => $user_flg]);
@@ -28,14 +27,14 @@ class UserController extends Controller
         $input_user = $request['user'];
         $user->fill($input_user)->save();
     
-        return redirect('/users/{user}' . $user->id);
+        return redirect('/users/' . $user->id);
     }
     
     public function store(User $user, UserRequest $request)
     {
         $input = $request['user'];
         $user->fill($input)->save();
-        return redirect('/users/{user}' . $user->id);
+        return redirect('/users/' . $user->id);
     }
     
     public function follow(User $user)
@@ -58,6 +57,9 @@ class UserController extends Controller
            return back();
        }
    }
+   
+   
+
    
    
 }

@@ -22,8 +22,19 @@
                 </div>
             </div>
             <div class="footer">
-                <a href="/posts/index')">戻る</a>
+                <a href="/posts/index">戻る</a>
             </div>
+            @if (auth()->id() == $post->user_id)
+              <div class="mb-4 text-center" style="margin-top:10px">
+                <form style="display: inline-block;"method="POST"
+                      action="{{ route('post.delete', $post->id) }}"
+                 >
+                 @csrf
+                 @method('DELETE')
+                 <button class="btn btn-danger">削除する</button>
+                 </form>
+               </div>
+            @endif
         </body>
      </x-app-layout>
 </html>
