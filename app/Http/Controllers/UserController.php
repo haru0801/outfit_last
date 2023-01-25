@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     //
     
-     public function show(Request $request,User $user)
+     public function show(Request $request,User $user,Post $post)
     {
         $user_flg = $request->path();
         $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
@@ -58,7 +58,7 @@ class UserController extends Controller
        }
    }
    
-   
+  
 
    
    

@@ -2,7 +2,7 @@
     <body>
         <h1 class="title">プロフィール画面</h1>
         <div class="content">
-            <form action="/users/3" method="POST">
+            <form action="/users/{{ $user->id }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class='nickname'>

@@ -26,6 +26,14 @@ class UserSeeder extends Seeder
             'gender' => 'man',
             ],
             [
+            'name' => 'hana',
+            'email' => 'more@test.com',
+            'password' => Hash::make('password'),
+            'nickname' => 'hanao',
+            'description' => 'Hanaoです',
+            'gender' => 'man',
+            ],
+            [
             'name' => 'soso',
             'email' => 'loc@mo.com',
             'password' => Hash::make('password'),

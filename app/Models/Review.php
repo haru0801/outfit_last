@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;;
+use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
     
      protected $fillable = [
-        'title',
-        'body',
+        'stars',
+        'comment',
         'user_id',
         'post_id'
     ];

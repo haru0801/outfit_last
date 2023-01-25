@@ -1,13 +1,5 @@
-<!DOCTYPE HTML>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
     <x-app-layout>
-        <head>
-            <meta charset="utf-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <title>Posts</title>
-            <!-- Fonts -->
-            <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-        </head>
         <body>
             <h1 class="title">
                 {{ $post->title }}
@@ -24,6 +16,16 @@
             <div class="footer">
                 <a href="/posts/index">戻る</a>
             </div>
+            @foreach($post->reviews as $review)
+            <div class='review'>
+                        <h2 class='stars'>
+                            {{ $review->stars }}
+                        </h2>
+                        <p class='comment'>{{$review->comment}}</p>
+                    </div>
+            @endforeach
+                    
+             
             @if (auth()->id() == $post->user_id)
               <div class="mb-4 text-center" style="margin-top:10px">
                 <form style="display: inline-block;"method="POST"
@@ -35,6 +37,9 @@
                  </form>
                </div>
             @endif
+             @if (auth()->id() != $post->user_id)
+             <a href='/posts/review'>レビューする</a>
+             @endif
         </body>
      </x-app-layout>
 </html>
