@@ -28,7 +28,9 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/index', [PostController::class, 'index'])->name('post.index');
     Route::get('/posts/timeline', [PostController::class, 'timeline'])->name('post.timeline');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+    Route::get('/posts/review', [PostController::class, 'review_create'])->name('review.create');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+    Route::post('/posts/review', [PostController::class, 'review_store'])->name('review.store');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');
     Route::delete('/posts/{post}', [PostController::class,'delete'])->name('post.delete');
 });

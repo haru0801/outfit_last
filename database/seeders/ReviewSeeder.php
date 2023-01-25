@@ -16,10 +16,18 @@ class ReviewSeeder extends Seeder
     public function run()
     {
         DB::table('reviews')->insert([
-            'title' => 'top',
-            'body' => 'test',
+            [
+            'comment' => 'review_comment',
+            'stars' => '1',
             'user_id' => '2',
-            'post_id' => '4'
+            'post_id' => '3'
+            ],
+            [
+            'comment' => 'review_comment_02',
+            'stars' => '5',
+            'user_id' => '3',
+            'post_id' => '3' 
+            ],
             ]);
     }
 }

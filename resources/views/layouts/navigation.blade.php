@@ -47,6 +47,7 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('ユーザー情報変更') }}
                         </x-dropdown-link>
+                        
                        
 
                         <!-- Authentication -->

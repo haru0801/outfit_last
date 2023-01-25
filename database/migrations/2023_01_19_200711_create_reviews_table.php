@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 50);
-            $table->string('body', 200);
+            $table->integer('stars')->default(0);
+            $table->string('comment', 100);
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('user_id')->constrained();

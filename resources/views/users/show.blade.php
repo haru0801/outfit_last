@@ -29,6 +29,7 @@
                                        </form>
                                    @endif
                                    @endif
+            </div>
             <div class="nickname">
                 <p>{{ $user->nickname }}</p>
             </div>
