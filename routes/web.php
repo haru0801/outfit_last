@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; 
 use App\Http\Controllers\UserController; 
+use App\Http\Controllers\ReviewController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -28,9 +29,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/index', [PostController::class, 'index'])->name('post.index');
     Route::get('/posts/timeline', [PostController::class, 'timeline'])->name('post.timeline');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
-    Route::get('/posts/review', [PostController::class, 'review_create'])->name('review.create');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
-    Route::post('/posts/review', [PostController::class, 'review_store'])->name('review.store');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');
     Route::delete('/posts/{post}', [PostController::class,'delete'])->name('post.delete');
 });
@@ -42,6 +41,9 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function()
 
 Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
 Route::delete('users/{user}/unfollow',[UserController::class, 'unfollow'])->name('unfollow');
+
+Route::get('/reviews/create/{post}', [ReviewController::class, 'create'])->name('review.create');
+Route::post('reviews', [ReviewController::class, 'store'])->name('review.store');
 
 
 Route::middleware('auth')->group(function () {

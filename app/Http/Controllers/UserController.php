@@ -10,8 +10,10 @@ class UserController extends Controller
 {
     //
     
-     public function show(Request $request,User $user,Post $post)
+     public function show(Request $request,User $user)
     {
+        // $user = User::withCount('reviews')->get();
+        // $user->reviews_count;
         $user_flg = $request->path();
         $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
         return view('users/show',['user' => $user,'user_flg' => $user_flg]);

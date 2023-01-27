@@ -13,6 +13,7 @@
                     <p>{{ $post->body }}</p>    
                 </div>
             </div>
+            {{ $average }}
             <div class="footer">
                 <a href="/posts/index">戻る</a>
             </div>
@@ -38,7 +39,7 @@
                </div>
             @endif
              @if (auth()->id() != $post->user_id)
-             <a href='/posts/review'>レビューする</a>
+             <a href='/reviews/create/{{ $post->id }}'>レビューする</a>
              @endif
         </body>
      </x-app-layout>
