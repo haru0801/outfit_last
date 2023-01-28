@@ -18,7 +18,12 @@ class PostController extends Controller
     
     public function show(Post $post)
     {
-        return view('posts/show')->with(['post' => $post]);
+        $average = collect();
+        foreach($post->reviews as $r){
+            $average->add($r->stars);
+        }
+        $average=$average->avg();
+        return view('posts/show')->with(['post' => $post, 'average' => $average]);
      
     }
     
@@ -44,51 +49,38 @@ class PostController extends Controller
     
     public function timeline(Post $post) 
     {
-        // dd($post->get());
+       ;
         $post = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->paginate(10);
         return view('posts/timeline')->with(['posts' => $post ]);
     }
     
-    public function review_create()
+     public function search(Request $request)
     {
-        return view('posts/review');
-    }
-    
-     public function review_store(Review $review, Request $request)
-   {
+        $posts = Post::paginate(20);
 
-        $result = false;
+        $search = $request->input('search');
 
-        $request->validate([
-            'product_id' => [
-                'required',
-                function($attribute, $value, $fail) use($request) {
+        $query = Post::query();
 
-                    
-                    $exists = Review::where('user_id', $request->user()->id)
-                        ->where('post_id', $request->post_id)
-                        ->exists();
+        if ($search) {
 
-                    if($exists) {
+            $spaceConversion = mb_convert_kana($search, 's');
 
-                        $fail('すでにレビューは投稿済みです。');
-                        return;
+            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
 
-                    }
+            foreach($wordArraySearched as $value) {
+                $query->where('body', 'like', '%'.$value.'%');
+            }
+            
+             $posts = $query->paginate(20);
 
-                }
-            ],
-            'stars' => 'required|integer|min:1|max:5',
-            'comment' => 'required'
-        ]);
+        }
 
-        $review->post_id = $request->post_id;
-        $review->user_id = \Auth::id(); 
-        $review->stars = $request->stars;
-        $review->comment = $request->comment;
-        $result = $review->save();
-        return  redirect('/posts/' . $review->post_id);
-
+        return view('posts.search')
+            ->with([
+                'posts' => $posts,
+                'search' => $search,
+            ]);
     }
  }
 ?>

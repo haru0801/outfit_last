@@ -40,6 +40,14 @@
                     <p>{{ $user->description }}</p>    
                 </div>
             </div>
+             @foreach($user->posts as $post)
+            <div class='posts'>
+                        <h2 class='title'>
+                            {{ $post->title }}
+                        </h2>
+                        <p class='body'>{{$post->body}}</p>
+                    </div>
+            @endforeach
             <div class="footer">
                 <a href="/posts/index">戻る</a>
             </div>
