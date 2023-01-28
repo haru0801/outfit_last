@@ -8,10 +8,18 @@
                             <a href="/posts/{{ $post->id }}">{{ $post->user->name }}</a>
                         </h2>
                         <p class='body'>{{ $post->body }}</p>
+  
                     </div>
                 @endforeach
             </div>
-            <a href='/posts/create'>create</a>
+            <form method="GET" action="{{ route('post.search') }}">
+                <input type="search" placeholder="キーワードを入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
+                <div>
+                    <button type="submit">検索</button>
+                </div>
+            </form>
+            
+                        <a href='/posts/create'>create</a>
             <div class='paginate'>
                 {{ $posts->links() }}
             </div>

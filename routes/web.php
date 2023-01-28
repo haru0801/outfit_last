@@ -30,6 +30,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/timeline', [PostController::class, 'timeline'])->name('post.timeline');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
+    Route::get('/posts/search', [PostController::class, 'search'])->name('post.search');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');
     Route::delete('/posts/{post}', [PostController::class,'delete'])->name('post.delete');
 });
@@ -44,6 +45,7 @@ Route::delete('users/{user}/unfollow',[UserController::class, 'unfollow'])->name
 
 Route::get('/reviews/create/{post}', [ReviewController::class, 'create'])->name('review.create');
 Route::post('reviews', [ReviewController::class, 'store'])->name('review.store');
+Route::delete('/reviews/{review}', [ReviewController::class,'delete'])->name('review.delete');
 
 
 Route::middleware('auth')->group(function () {
