@@ -12,12 +12,14 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
+        dd($post->withAvg("reviews as a", "stars")->orderBy("a","DESC")->get());
         return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
     }
     
     
     public function show(Post $post)
     {
+        // dd($post->loadAvg("reviews as a", "stars"));
         $average = collect();
         foreach($post->reviews as $r){
             $average->add($r->stars);

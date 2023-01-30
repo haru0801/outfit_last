@@ -28,6 +28,30 @@ class ReviewSeeder extends Seeder
             'user_id' => '3',
             'post_id' => '3' 
             ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '2',
+            'user_id' => '2',
+            'post_id' => '1'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '5',
+            'user_id' => '2',
+            'post_id' => '1'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '1',
+            'user_id' => '2',
+            'post_id' => '2'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '2',
+            'user_id' => '2',
+            'post_id' => '2'
+            ],
             ]);
     }
 }
