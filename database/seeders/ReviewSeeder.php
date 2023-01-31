@@ -37,7 +37,7 @@ class ReviewSeeder extends Seeder
             [
             'comment' => 'review_comment',
             'stars' => '5',
-            'user_id' => '2',
+            'user_id' => '3',
             'post_id' => '1'
             ],
             [
@@ -49,8 +49,44 @@ class ReviewSeeder extends Seeder
             [
             'comment' => 'review_comment',
             'stars' => '2',
-            'user_id' => '2',
+            'user_id' => '3',
             'post_id' => '2'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '2',
+            'user_id' => '2',
+            'post_id' => '4'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '3',
+            'user_id' => '3',
+            'post_id' => '4'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '1',
+            'user_id' => '2',
+            'post_id' => '5'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '1',
+            'user_id' => '3',
+            'post_id' => '5'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '5',
+            'user_id' => '2',
+            'post_id' => '6'
+            ],
+            [
+            'comment' => 'review_comment',
+            'stars' => '5',
+            'user_id' => '3',
+            'post_id' => '6'
             ],
             ]);
     }

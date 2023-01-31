@@ -29,6 +29,7 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/index', [PostController::class, 'index'])->name('post.index');
     Route::get('/posts/timeline', [PostController::class, 'timeline'])->name('post.timeline');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+    Route::get('/posts/ranking', [PostController::class, 'ranking'])->name('post.ranking');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/search', [PostController::class, 'search'])->name('post.search');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');

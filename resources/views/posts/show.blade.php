@@ -13,7 +13,7 @@
                     <p>{{ $post->body }}</p>    
                 </div>
             </div>
-            評価平均{{ $average }}
+            評価平均{{ $post->stars_review }}
             <div class="footer">
                 <a href="/posts/index">戻る</a>
             </div>
