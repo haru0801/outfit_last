@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
         $this->call(PostSeeder::class);
         $this->call(ReviewSeeder::class);
-        $this->call(UserUserSeeder::class);
+        $this->call(FollowUserSeeder::class);
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',

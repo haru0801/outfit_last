@@ -7,6 +7,9 @@
                         <h2 class='title'>
                             <a href="/posts/{{ $post->id }}">{{ $post->user->name }}</a>
                         </h2>
+                        <div>
+                            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                        </div>
                         <p class='body'>{{ $post->body }}</p>
                         
                 評価平均{{ $post->stars_review }}
@@ -20,7 +23,7 @@
                 </div>
             </form>
             
-                        <a href='/posts/create'>create</a>
+                        <!--<a href='/posts/create'>create</a>-->
             <div class='paginate'>
                 {{ $posts->links() }}
             </div>

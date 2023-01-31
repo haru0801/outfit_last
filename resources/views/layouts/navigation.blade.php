@@ -16,13 +16,16 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('post.index')" :active="request()->routeIs('index')">
-                        {{ __('Index') }}
+                        {{ __('投稿一覧') }}
                     </x-nav-link>
                     <x-nav-link :href="route('post.timeline')" :active="request()->routeIs('timeline')">
                         {{ __('タイムライン') }}
                     </x-nav-link>
                     <x-nav-link :href="route('post.create')" :active="request()->routeIs('create')">
-                        {{ __('Create') }}
+                        {{ __('投稿作成') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('post.ranking')" :active="request()->routeIs('ranking')">
+                        {{ __('ランキング') }}
                     </x-nav-link>
                  
                 </div>

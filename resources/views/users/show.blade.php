@@ -43,10 +43,12 @@
              @foreach($user->posts as $post)
             <div class='posts'>
                         <h2 class='title'>
-                            {{ $post->title }}
+                            <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                         </h2>
-                        <p class='body'>{{$post->body}}</p>
-                    </div>
+                        <div>
+                            <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+                        </div>
+            </div>
             @endforeach
             <div class="footer">
                 <a href="/posts/index">戻る</a>

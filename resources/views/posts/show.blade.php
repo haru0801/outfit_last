@@ -4,6 +4,9 @@
             <h1 class="title">
                 {{ $post->title }}
             </h1>
+            <div>
+                <img src="{{ $post->image_url }}" alt="画像が読み込めません。"/>
+            </div>
             <h2>
                 <a href="/users/{{ $post->user->id }}">{{ $post->user->name }}</a>
             </h2>
@@ -19,6 +22,9 @@
             </div>
             @foreach($post->reviews as $review)
                     <div class='review'>
+                        <div class ='review_name'>
+                            <a href="/users/{{ $review->user->id }}">{{ $review->user->name }}</a
+                        </div>
                         <h2 class='stars'>
                             {{ $review->stars }}
                         </h2>
