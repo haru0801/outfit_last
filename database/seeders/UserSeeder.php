@@ -18,15 +18,15 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-            'name' => 'purin',
+            'name' => 'よしき',
             'email' => 'test@test.com',
             'password' => Hash::make('password'),
-            'nickname' => 'Haru',
+            'nickname' => 'Yoshi',
             'description' => 'Hello',
             'gender' => 'man',
             ],
             [
-            'name' => 'hana',
+            'name' => 'はなお',
             'email' => 'more@test.com',
             'password' => Hash::make('password'),
             'nickname' => 'hanao',
@@ -34,10 +34,18 @@ class UserSeeder extends Seeder
             'gender' => 'man',
             ],
             [
-            'name' => 'soso',
+            'name' => '直美',
             'email' => 'loc@mo.com',
             'password' => Hash::make('password'),
             'nickname' => 'Shiro',
+            'description' => 'sample',
+            'gender' => 'lady',
+             ],
+             [
+            'name' => '裕子',
+            'email' => 'loc@m',
+            'password' => Hash::make('password'),
+            'nickname' => 'ゆーこ',
             'description' => 'sample',
             'gender' => 'lady',
              ]
