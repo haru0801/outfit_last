@@ -12,20 +12,15 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-        dd($post->withAvg("reviews as a", "stars")->orderBy("a","DESC")->get());
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+       $post->withAvg("reviews as stars_review", "stars")->orderBy('updated_at', 'DESC')->paginate(3);
+        return view('posts/index')->with(['posts' =>  $post->withAvg("reviews as stars_review", "stars")->orderBy('updated_at', 'DESC')->paginate(3)]);
     }
     
     
     public function show(Post $post)
     {
-        // dd($post->loadAvg("reviews as a", "stars"));
-        $average = collect();
-        foreach($post->reviews as $r){
-            $average->add($r->stars);
-        }
-        $average=$average->avg();
-        return view('posts/show')->with(['post' => $post, 'average' => $average]);
+        $post->loadAvg("reviews as stars_review", "stars");
+        return view('posts/show')->with(['post' => $post]);
      
     }
     
@@ -54,6 +49,12 @@ class PostController extends Controller
        ;
         $post = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->paginate(10);
         return view('posts/timeline')->with(['posts' => $post ]);
+    }
+    
+    public function ranking(Post $post)
+    {
+        $post->withAvg("reviews as stars_review", "stars")->orderBy("stars_review","DESC")->limit(5)->get();
+        return view('posts/ranking')->with(['posts' => $post->withAvg("reviews as stars_review", "stars")->orderBy("stars_review","DESC")->limit(5)->get()]);
     }
     
      public function search(Request $request)

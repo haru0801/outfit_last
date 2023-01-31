@@ -33,6 +33,21 @@ class PostSeeder extends Seeder
             'body' => 'no',
             'user_id' => '1',
             ],
+            [
+            'title' => 'Mori',
+            'body' => 'how',
+            'user_id' => '1',
+            ],
+            [
+            'title' => 'Koro',
+            'body' => 'ダウンジャケット',
+            'user_id' => '1',
+            ],
+            [
+            'title' => 'こんにちは',
+            'body' => 'シャツ',
+            'user_id' => '1',
+            ],
      ]);
     }
 }

@@ -8,7 +8,8 @@
                             <a href="/posts/{{ $post->id }}">{{ $post->user->name }}</a>
                         </h2>
                         <p class='body'>{{ $post->body }}</p>
-  
+                        
+                評価平均{{ $post->stars_review }}
                     </div>
                 @endforeach
             </div>
