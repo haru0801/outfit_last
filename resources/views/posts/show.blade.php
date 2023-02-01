@@ -17,6 +17,7 @@
                 </div>
             </div>
             評価平均{{ $post->stars_review }}
+            評価件数{{ $post->reviews_count }}件
             <div class="footer">
                 <a href="/posts/index">戻る</a>
             </div>

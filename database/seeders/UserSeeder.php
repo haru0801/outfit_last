@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'nickname' => 'Yoshi',
             'description' => 'Hello',
-            'gender' => 'man',
+            'gender' => '1',
             ],
             [
             'name' => 'はなお',
@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'nickname' => 'hanao',
             'description' => 'Hanaoです',
-            'gender' => 'man',
+            'gender' => '2',
             ],
             [
             'name' => '直美',
@@ -39,7 +39,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'nickname' => 'Shiro',
             'description' => 'sample',
-            'gender' => 'lady',
+            'gender' => '2',
              ],
              [
             'name' => '裕子',
@@ -47,8 +47,16 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'nickname' => 'ゆーこ',
             'description' => 'sample',
-            'gender' => 'lady',
-             ]
+            'gender' => '2',
+             ],
+             [
+            'name' => '恭平',
+            'email' => 'kyo@test.com',
+            'password' => Hash::make('password'),
+            'nickname' => 'きょうへい',
+            'description' => '1月生まれ',
+            'gender' => '1',
+            ],
           ]);
     }
 }

@@ -8,6 +8,24 @@
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
         </div>
+        
+        <div class="form-group row">
+            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>
+        
+            <div class="col-md-6" style="padding-top: 8px">
+                <input id="gender-m" type="radio" name="gender" value="1">
+                <label for="gender-m">Male</label>
+                <input id="gender-f" type="radio" name="gender" value="2">
+                <label for="gender-f">Female</label>
+        
+                @if ($errors->has('gender'))
+                    <span class="invalid-feedback">
+                        <strong>{{ $errors->first('gender') }}</strong>
+                    </span>
+                @endif
+            </div>
+        </div>
+
 
         <!-- Email Address -->
         <div class="mt-4">

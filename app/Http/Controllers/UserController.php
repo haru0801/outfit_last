@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 
@@ -12,9 +13,7 @@ class UserController extends Controller
     
      public function show(Request $request,User $user)
     {
-        // $user = User::withCount('reviews')->get();
-        // $user->reviews_count;
-        $user_flg = $request->path();
+        $followed_count = $user->follows()->count();
         $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
         return view('users/show',['user' => $user,'user_flg' => $user_flg]);
     }
@@ -59,6 +58,18 @@ class UserController extends Controller
            return back();
        }
    }
+   
+   public function gender(User $user,Post $post, Request $request)
+    {
+        $gender = $request->gender;
+        $users = $user->where('gender', $gender)->get();
+        $user_id = array();
+        foreach($users as $value){
+            array_push($user_id, $value->id);
+        }
+        $post->whereIn('user_id', $user_id)->get();
+        return view('users.gender')->with(['posts' => $user->getByGender()]);
+    }
    
   
 

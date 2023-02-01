@@ -27,6 +27,9 @@
                     <x-nav-link :href="route('post.ranking')" :active="request()->routeIs('ranking')">
                         {{ __('ランキング') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('user.show', ['user'=> auth()->id()])" :active="request()->routeIs('show')">
+                        {{ __('マイプロフィール') }}
+                    </x-nav-link>
                  
                 </div>
             </div>

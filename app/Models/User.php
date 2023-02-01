@@ -92,4 +92,9 @@ class User extends Authenticatable
    {
        return (boolean) $this->followers()->where('following_id', $user_id)->first();
    }
+   
+   public function getByGender()
+    {
+         return $this->posts()->with('user')->orderBy('updated_at', 'DESC')->paginate(5);
+    }
 }

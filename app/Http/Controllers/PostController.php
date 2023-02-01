@@ -13,13 +13,13 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-       $post->withAvg("reviews as stars_review", "stars")->orderBy('updated_at', 'DESC')->paginate(3);
         return view('posts/index')->with(['posts' =>  $post->withAvg("reviews as stars_review", "stars")->orderBy('updated_at', 'DESC')->paginate(3)]);
     }
     
     
     public function show(Post $post)
     {
+        $post = Post::withCount('reviews')->where('id', $post->id)->first();
         $post->loadAvg("reviews as stars_review", "stars");
         return view('posts/show')->with(['post' => $post]);
      
