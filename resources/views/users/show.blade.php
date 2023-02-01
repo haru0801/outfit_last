@@ -40,6 +40,7 @@
                     <p>{{ $user->description }}</p>    
                 </div>
             </div>
+            フォロワー数{{ $followed_count }}
              @foreach($user->posts as $post)
             <div class='posts'>
                         <h2 class='title'>
