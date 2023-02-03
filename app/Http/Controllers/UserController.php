@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -14,8 +15,9 @@ class UserController extends Controller
      public function show(Request $request,User $user)
     {
         $followed_count = $user->follows()->count();
+        $user_flg = $request->path();
         $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
-        return view('users/show',['user' => $user,'user_flg' => $user_flg]);
+        return view('users/show',['user' => $user,'user_flg' => $user_flg, 'followed_count' => $followed_count]);
     }
     
     public function edit(User $user)
@@ -59,16 +61,52 @@ class UserController extends Controller
        }
    }
    
-   public function gender(User $user,Post $post, Request $request)
+   public function male(User $user,Post $post)
     {
-        $gender = $request->gender;
-        $users = $user->where('gender', $gender)->get();
+        $users = $user->where('gender', 1)->get();
         $user_id = array();
         foreach($users as $value){
             array_push($user_id, $value->id);
         }
-        $post->whereIn('user_id', $user_id)->get();
-        return view('users.gender')->with(['posts' => $user->getByGender()]);
+        $posts = $post->whereIn('user_id', $user_id)->paginate(5);
+        return view('users.male')->with(['posts' => $posts]);
+    }
+    
+    public function female(User $user,Post $post)
+    {
+        $users = $user->where('gender', 2)->get();
+        $user_id = array();
+        foreach($users as $value){
+            array_push($user_id, $value->id);
+        }
+        $posts = $post->whereIn('user_id', $user_id)->paginate(5);
+        return view('users.female')->with(['posts' => $posts]);
+    }
+    
+    public function maleranking(User $user,Post $post)
+    {
+        $users = $user->where('gender', 1)->get();
+        $user_id = array();
+        foreach($users as $value){
+            array_push($user_id, $value->id);
+        }
+        $days=Carbon::today()->subDay(30);
+        $posts = $post->whereIn('user_id', $user_id)->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC")->limit(5)->get();
+        
+        return view('posts/ranking')->with(['posts' => $posts]);
+    }
+    
+    public function femaleranking(User $user,Post $post)
+    {
+        $users = $user->where('gender', 2)->get();
+        $user_id = array();
+        foreach($users as $value){
+            array_push($user_id, $value->id);
+        }
+        $days=Carbon::today()->subDay(30);
+        $posts = $post->whereIn('user_id', $user_id)->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC")->limit(5)->get();
+        
+        return view('posts/ranking')->with(['posts' => $posts]);
     }
    
   

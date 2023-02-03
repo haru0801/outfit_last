@@ -1,7 +1,4 @@
-
-    <x-app-layout>
-        <a href='/users/male'>男性</a>
-        <a href='/users/female'>女性</a>
+ <x-app-layout>
             <h1>Blog Name</h1>
             <div class='posts'>
                 @foreach ($posts as $post)
@@ -18,7 +15,6 @@
                     </div>
                 @endforeach
             </div>
-            
             <form method="GET" action="{{ route('post.search') }}">
                 <input type="search" placeholder="キーワードを入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
                 <div>
