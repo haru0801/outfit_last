@@ -38,6 +38,8 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
 Route::controller(UserController::class)->middleware(['auth'])->group(function(){
     Route::get('/users/male', [UserController::class, 'male'])->name('user.male');
     Route::get('/users/female', [UserController::class, 'female'])->name('user.female');
+    Route::get('/users/male/ranking', [UserController::class, 'maleranking'])->name('user.maleranking');
+    Route::get('/users/female/ranking', [UserController::class, 'femaleranking'])->name('user.femaleranking');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');

@@ -14,7 +14,7 @@
                         </div>
                         <p class='body'>{{ $post->body }}</p>
                         
-                評価平均{{ $post->stars_review }}
+                評価平均{{ round($post->stars_review, 2) }}
                     </div>
                 @endforeach
             </div>

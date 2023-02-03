@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
 use Cloudinary;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' =>  $post->withAvg("reviews as stars_review", "stars")->orderBy('updated_at', 'DESC')->paginate(3)]);
+        $posts = $post->withAvg("reviews as stars_review", "stars")->orderBy('created_at', 'DESC')->paginate(3);
+        return view('posts/index')->with(['posts' => $posts ]);
     }
     
     
@@ -57,8 +59,9 @@ class PostController extends Controller
     
     public function ranking(Post $post)
     {
-        $post->withAvg("reviews as stars_review", "stars")->orderBy("stars_review","DESC")->limit(5)->get();
-        return view('posts/ranking')->with(['posts' => $post->withAvg("reviews as stars_review", "stars")->orderBy("stars_review","DESC")->limit(5)->get()]);
+        $days=Carbon::today()->subDay(30);
+        $posts = $post->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC")->limit(5)->get();
+        return view('posts/ranking')->with(['posts' => $posts]);
     }
     
      public function search(Request $request)

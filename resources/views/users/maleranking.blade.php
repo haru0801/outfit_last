@@ -1,7 +1,5 @@
    <x-app-layout>
-            <h1>Ranking</h1>
-            <a href='/users/male/ranking'>男性</a>
-            <a href='/users/female/ranking'>女性</a>
+            <h1>male Ranking</h1>
             <div class='posts'>
                 @foreach ($posts as $post)
                     <div class='post'>
@@ -14,6 +12,7 @@
                         <p class='body'>{{ $post->body }}</p>
                         評価平均{{ round($post->stars_review, 2) }}
                     </div>
+                __}{|
                 @endforeach
             </div>
             
