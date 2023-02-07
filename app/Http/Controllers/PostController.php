@@ -14,7 +14,7 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-        $posts = $post->withAvg("reviews as stars_review", "stars")->orderBy('created_at', 'DESC')->paginate(3);
+        $posts = $post->withAvg("reviews as stars_review", "stars")->orderBy('created_at', 'DESC')->paginate(4);
         return view('posts/index')->with(['posts' => $posts ]);
     }
     
