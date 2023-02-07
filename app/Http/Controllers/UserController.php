@@ -14,10 +14,8 @@ class UserController extends Controller
     
      public function show(Request $request,User $user)
     {
-        $followed_count = $user->follows()->count();
-        $user_flg = $request->path();
-        $user_flg = preg_replace('/[^0-10000]/', '', $user_flg);
-        return view('users/show',['user' => $user,'user_flg' => $user_flg, 'followed_count' => $followed_count]);
+        $followed_count = $user->followers()->count();
+        return view('users/show',['user' => $user,'followed_count' => $followed_count]);
     }
     
     public function edit(User $user)
@@ -68,7 +66,7 @@ class UserController extends Controller
         foreach($users as $value){
             array_push($user_id, $value->id);
         }
-        $posts = $post->whereIn('user_id', $user_id)->paginate(5);
+        $posts = $post->whereIn('user_id', $user_id)->paginate(4);
         return view('users.male')->with(['posts' => $posts]);
     }
     
@@ -79,7 +77,7 @@ class UserController extends Controller
         foreach($users as $value){
             array_push($user_id, $value->id);
         }
-        $posts = $post->whereIn('user_id', $user_id)->paginate(5);
+        $posts = $post->whereIn('user_id', $user_id)->paginate(4);
         return view('users.female')->with(['posts' => $posts]);
     }
     
@@ -93,7 +91,7 @@ class UserController extends Controller
         $days=Carbon::today()->subDay(30);
         $posts = $post->whereIn('user_id', $user_id)->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC")->limit(5)->get();
         
-        return view('posts/ranking')->with(['posts' => $posts]);
+        return view('users/maleranking')->with(['posts' => $posts]);
     }
     
     public function femaleranking(User $user,Post $post)
@@ -106,7 +104,7 @@ class UserController extends Controller
         $days=Carbon::today()->subDay(30);
         $posts = $post->whereIn('user_id', $user_id)->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC")->limit(5)->get();
         
-        return view('posts/ranking')->with(['posts' => $posts]);
+        return view('users/femaleranking')->with(['posts' => $posts]);
     }
    
   
