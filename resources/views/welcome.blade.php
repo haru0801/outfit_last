@@ -21,25 +21,27 @@
             }
         </style>
     </head>
-    <body class="antialiased">
+    <body class="antialiased bg-gray-100">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     @auth
-                        <a href="{{ url('/posts/index') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">最新投稿へ</a>
+                        <a href="{{ url('/posts/index') }}" class="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-mg font-semibold transition duration-100 underline">最新投稿へ</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">ログイン</a>
+                        <a href="{{ route('login') }}" class="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-sg font-semibold transition duration-100 underline">ログイン</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">新規ユーザー登録</a>
+                            <a href="{{ route('register') }}" class="text-gray-600 hover:text-indigo-500 active:text-indigo-700 text-mg font-semibold transition duration-100 underline">新規ユーザー登録</a>
                         @endif
                     @endauth
                 </div>
             @endif
-            
-        <h1 class = "text-4xl bg-green-700 text-center font-semibold">
-            Welcome to Every Outfit!
-        </h1>
+            <div class='flex-row py-4'>
+                <h1 class = "text-10xl  text-left font-bold">
+                    Welcome to 
+                </h1>
+                <img src="https://res.cloudinary.com/djyg6jqy2/image/upload/v1675660070/outfit_tjhhhj.png" class="h-30 items-center">
+            </div>
 
         </div>
     </body>
