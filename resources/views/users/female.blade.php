@@ -2,7 +2,7 @@
     <x-app-layout>
         <div class="bg-gray-100 py-6 sm:py-8 lg:py-12">
           <div class="max-w-screen-2xl px-4 md:px-8 mx-auto">
-                 <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">検索結果</h2>
+                 <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold text-center mb-4 md:mb-6">女性の最新のコーデ一覧</h2>
             <div class="max-w-xl flex flex-col items-center text-center mx-auto">
             <div class="flex flex-col items-center lg:items-end">
                 <form method="GET" action="{{ route('post.search') }}" class="w-full max-w-md flex gap-2 mb-3">

@@ -1,27 +1,27 @@
-<!DOCTYPE HTML>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <title>レビュー作成</title>
-    </head>
-    <body>
+
+<x-app-layout>
+　　<div class="container mx-auto">
+      <div class="flex justify-center bg-gray-100 py-6 sm:py-8 lg:py-12 ">
         <form action="/reviews" method="POST">
             @csrf
-            <div class="star">
-                <h2>評価</h2>
-                <input type="text" name="review[stars]" placeholder="１～５" value="{{ old('review.star') }}"/>
+            <h1 class="text-center bg-gray-100 text-gray-800 text-2xl lg:text-3xl font-bold mb-4 md:mb-6">レビュー作成</h1>
+            <div class="mb-6">
+                <label for="star"　class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">評価</label>
+                <input type="text" name="review[stars]" placeholder="1~5" value="{{ old('review.star') }}"　id="star" class="block w-full p-2 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-xs focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
                 <p class="star__error" style="color:red">{{ $errors->first('review.star') }}</p>
             </div>
-            <div class="comment">
-                <h2>コメント</h2>
-                <textarea name="review[comment]" placeholder="おしゃれです">{{ old('review.comment') }}</textarea>
+            <div class="mb-6">
+                <label for="comment"　"block mb-2 text-sm font-medium text-gray-900 dark:text-white">ひとこと</label>
+                <textarea type="comment" name="review[comment]" placeholder="おしゃれです" value="{{ old('review.comment') }}"　id="star" class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">{{ old('review.comment') }}</textarea>
                 <p class="comment__error" style="color:red">{{ $errors->first('review.comment') }}</p>
             </div>
             <input type="hidden" value="{{$post->id}}" name="post_id">
-            <input type="submit" value="保存"/>
+            <input type="submit" value="保存" class="text-white item-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"/>
+            <div class="mb-2 text-sm font-medium text-center text-gray-900 dark:text-white">
+                    <a href="/posts/index">戻る</a>
+            </div>
         </form>
-        <div class="footer">
-                <a href="/posts/index">戻る</a>
-        </div>
-    </body>
-</html>
+            
+      </div>
+    </div>
+</x-app-layout>

@@ -7,23 +7,23 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
+use Cloudinary;
+use Carbon\Carbon;
 
 class PostController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
+        $posts = $post->withAvg("reviews as stars_review", "stars")->orderBy('created_at', 'DESC')->paginate(4);
+        return view('posts/index')->with(['posts' => $posts ]);
     }
     
     
     public function show(Post $post)
     {
-        $average = collect();
-        foreach($post->reviews as $r){
-            $average->add($r->stars);
-        }
-        $average=$average->avg();
-        return view('posts/show')->with(['post' => $post, 'average' => $average]);
+        $post = Post::withCount('reviews')->where('id', $post->id)->first();
+        $post->loadAvg("reviews as stars_review", "stars");
+        return view('posts/show')->with(['post' => $post]);
      
     }
     
@@ -34,8 +34,11 @@ class PostController extends Controller
     
     public function store(Post $post, Request $request)
     {
+        
         $post->user_id = \Auth::id(); 
         $input = $request['post'];
+        $image_url = Cloudinary::upload($request->file('image')->getRealPath())->getSecurePath();
+        $input += ['image_url' => $image_url];  
         $post->fill($input);
         $post->save();
         return redirect('/posts/' . $post->id);
@@ -52,6 +55,13 @@ class PostController extends Controller
        ;
         $post = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->paginate(10);
         return view('posts/timeline')->with(['posts' => $post ]);
+    }
+    
+    public function ranking(Post $post)
+    {
+        $days=Carbon::today()->subDay(30);
+        $posts = $post->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC")->limit(5)->get();
+        return view('posts/ranking')->with(['posts' => $posts]);
     }
     
      public function search(Request $request)

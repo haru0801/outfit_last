@@ -29,12 +29,17 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/index', [PostController::class, 'index'])->name('post.index');
     Route::get('/posts/timeline', [PostController::class, 'timeline'])->name('post.timeline');
     Route::get('/posts/create', [PostController::class, 'create'])->name('post.create');
+    Route::get('/posts/ranking', [PostController::class, 'ranking'])->name('post.ranking');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/search', [PostController::class, 'search'])->name('post.search');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');
     Route::delete('/posts/{post}', [PostController::class,'delete'])->name('post.delete');
 });
 Route::controller(UserController::class)->middleware(['auth'])->group(function(){
+    Route::get('/users/male', [UserController::class, 'male'])->name('user.male');
+    Route::get('/users/female', [UserController::class, 'female'])->name('user.female');
+    Route::get('/users/male/ranking', [UserController::class, 'maleranking'])->name('user.maleranking');
+    Route::get('/users/female/ranking', [UserController::class, 'femaleranking'])->name('user.femaleranking');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
