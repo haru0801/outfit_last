@@ -43,7 +43,7 @@ Route::controller(UserController::class)->middleware(['auth'])->group(function()
     Route::get('/users/{user}', [UserController::class, 'show'])->name('user.show');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/users/{user}', [UserController::class, 'update'])->name('user.update');
-});
+}); 
 
 Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
 Route::delete('users/{user}/unfollow',[UserController::class, 'unfollow'])->name('unfollow');
