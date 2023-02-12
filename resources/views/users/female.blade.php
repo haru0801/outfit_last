@@ -40,7 +40,7 @@
                 @endforeach
                 
             </div>
-            <div class='text-gray-800 text-xl flex justify-center py-2'>
+            <div class='text-gray-800 text-xl text-center'>
                 {{ $posts->links() }}
             </div>
                
