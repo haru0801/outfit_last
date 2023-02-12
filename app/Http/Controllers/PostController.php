@@ -7,6 +7,7 @@ use App\Models\Review;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 use Cloudinary;
 use Carbon\Carbon;
 

@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Carbon\Carbon;
+use Illuminate\Pagination\Paginator;
 
 class UserController extends Controller
 {
