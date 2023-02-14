@@ -54,7 +54,7 @@ class PostController extends Controller
     public function timeline(Post $post) 
     {
         $post = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->latest()->paginate(10);
-        $posts = $post->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC");
+        // $posts = $post->withAvg("reviews as stars_review", "stars")->whereDate('created_at', '>=', $days)->orderBy("stars_review","DESC");
         return view('posts/timeline')->with(['posts' => $post ]);
     }
     
