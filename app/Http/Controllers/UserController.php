@@ -67,7 +67,7 @@ class UserController extends Controller
         foreach($users as $value){
             array_push($user_id, $value->id);
         }
-        $posts = $post->whereIn('user_id', $user_id)->paginate(4);
+        $posts = $post->whereIn('user_id', $user_id)->withAvg("reviews as stars_review", "stars")->paginate(4);
         return view('users.male')->with(['posts' => $posts]);
     }
     
@@ -78,7 +78,7 @@ class UserController extends Controller
         foreach($users as $value){
             array_push($user_id, $value->id);
         }
-        $posts = $post->whereIn('user_id', $user_id)->paginate(4);
+        $posts = $post->whereIn('user_id', $user_id)->withAvg("reviews as stars_review", "stars")->paginate(4);
         return view('users.female')->with(['posts' => $posts]);
     }
     
