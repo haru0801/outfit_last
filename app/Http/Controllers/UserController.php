@@ -16,7 +16,7 @@ class UserController extends Controller
      public function show(Request $request,User $user)
     {
         $followed_count = $user->followers()->count();
-        return view('users/show',['user' => $user,'followed_count' => $followed_count]);
+        return view('users/show',['user' => $user,'followed_count' => $followed_count,]);
     }
     
     public function edit(User $user)
