@@ -33,6 +33,15 @@
                               <h2 class="text-white text-xl font-semibold transition duration-100 mb-2">{{ $post->title }}</h2>
                     
                               <span class="text-indigo-300 font-semibold">View more</span>
+                              <form method="POST" action="{{ route('post.likes', $post) }}">
+                                  @csrf
+                                  @if($post->likedBy(auth()->user()))
+                                    @method('DELETE')
+                                    <button type="submit">いいねを取り消す</button>
+                                  @else
+                                    <button type="submit">いいね！</button>
+                                  @endif
+                               </form>
                             </div>
                           </a>
                          

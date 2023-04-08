@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController; 
 use App\Http\Controllers\UserController; 
@@ -25,6 +26,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::post('/posts/{post}/likes', [LikeController::class, 'store'])->name('post.likes');
+Route::delete('/posts/{post}/likes', [LikeController::class, 'destroy'])->name('post.likes');
+
+
+
 Route::controller(PostController::class)->middleware(['auth'])->group(function(){
     Route::get('/posts/index', [PostController::class, 'index'])->name('post.index');
     Route::get('/posts/timeline', [PostController::class, 'timeline'])->name('post.timeline');
@@ -32,9 +38,13 @@ Route::controller(PostController::class)->middleware(['auth'])->group(function()
     Route::get('/posts/ranking', [PostController::class, 'ranking'])->name('post.ranking');
     Route::post('/posts', [PostController::class, 'store'])->name('post.store');
     Route::get('/posts/search', [PostController::class, 'search'])->name('post.search');
+    Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('post.like');
     Route::get('/posts/{post}', [PostController::class ,'show'])->name('post.show');
     Route::delete('/posts/{post}', [PostController::class,'delete'])->name('post.delete');
 });
+
+
+
 Route::controller(UserController::class)->middleware(['auth'])->group(function(){
     Route::get('/users/male', [UserController::class, 'male'])->name('user.male');
     Route::get('/users/female', [UserController::class, 'female'])->name('user.female');

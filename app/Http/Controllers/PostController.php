@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\Review;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class PostController extends Controller
         $post = Post::withCount('reviews')->where('id', $post->id)->first();
         $post->loadAvg("reviews as stars_review", "stars");
         return view('posts/show')->with(['post' => $post]);
+        dd($post);
      
     }
     
@@ -94,5 +96,15 @@ class PostController extends Controller
                 'search' => $search,
             ]);
     }
+    
+    public function like(Post $post)
+    {
+        $post->likes()->create([
+            'user_id' => auth()->id(),
+        ]);
+    
+        return back();
+    }
+
  }
 ?>
